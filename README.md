@@ -1,60 +1,98 @@
-# Recommendation Engine
-### 1. Introduction to Recommendation Systems:
-A Recommendation Engine is an algorithm that helps users discover products, services, or content by predicting their preferences based on past behavior or similar users' choices. It is widely used in various domains like e-commerce, streaming services, and social media to enhance user engagement.
+# Anime Recommendation System
+This project implements a recommendation engine for anime shows based on their genres using TF-IDF Vectorization and Cosine Similarity. It deploys a Flask-based web application to provide anime recommendations based on user input. The backend uses PostgreSQL to store and retrieve data, and the engine outputs top recommended anime shows for cross-analysis and database integration.
 
-### Recommendation Systems can be classified into three main types:
+## Table of Contents
+#### Project Overview
+#### Features
+#### Installation
+#### Usage
+#### Project Structure
+#### Key Files and Folders
+#### Technologies Used
+#### Acknowledgements
+#### Project Overview
 
-##### Content-Based Filtering: Recommends items similar to those a user has liked in the past.
-##### Collaborative Filtering: Recommends items based on the behavior of similar users.
-##### Hybrid Systems: Combine both content-based and collaborative filtering approaches for more accurate recommendations.
-### 2. Applications of Recommendation Systems:
-Recommendation systems are used in a variety of domains, including:
+## Problem Statement
+Given transaction data of anime shows, we aim to develop a recommendation system that suggests similar anime shows based on their genre, helping users discover new shows they might enjoy.
 
-E-Commerce: Suggesting products based on browsing or purchase history.
-Streaming Services: Recommending movies, TV shows, or music based on previous consumption.
-Social Media: Suggesting new connections, posts, or groups based on user interests.
-News Websites: Recommending articles based on reading habits and interests.
-Healthcare: Recommending personalized treatments based on patient data.
-### 3. How Recommendation Systems Work:
-Recommendation systems work by using either content-based or collaborative filtering techniques:
+## Objectives
+#### Recommend similar anime shows based on genre.
+#### Store recommendation results in a PostgreSQL database.
+#### Deploy a Flask-based web application for user interaction.
+#### Solution Approach
 
-### 3.1 Content-Based Filtering:
-In content-based filtering, the system recommends items similar to those a user has already shown interest in.
-TF-IDF (Term Frequency-Inverse Document Frequency): Represents content in numerical format to find similarities between items (like descriptions, genres, etc.).
-Cosine Similarity: A common measure to calculate similarity between items, based on their content vectors.
-### 3.2 Collaborative Filtering:
-Collaborative filtering relies on user interactions (ratings, clicks, purchases) to recommend items based on what similar users have liked or interacted with.
-User-Based Collaborative Filtering (UB-CF): Recommends items liked by similar users.
-Item-Based Collaborative Filtering (IB-CF): Recommends items similar to those the user has previously liked.
-### 3.3 Hybrid Systems:
-Combines both content-based and collaborative filtering to provide better recommendations. It helps in overcoming cold-start issues and sparsity in data.
-### 4. Evaluation Metrics:
-Evaluating recommendation systems ensures their effectiveness in providing accurate suggestions. Common metrics include:
+## This project follows a systematic approach:
 
-Precision: Proportion of recommended items that are relevant to the user.
-Recall: Proportion of relevant items that are recommended.
-Mean Squared Error (MSE): Measures the difference between actual ratings and predicted ratings.
-F1-Score: Harmonic mean of precision and recall, used when there's a need to balance both metrics.
-### 5. Techniques Used in Recommendation Systems:
-Matrix Factorization: Reduces dimensionality by breaking down the user-item interaction matrix into latent factors that can predict missing entries (e.g., SVD - Singular Value Decomposition).
-Nearest Neighbors (KNN): Finds the closest users or items based on a similarity metric, recommending the most popular among them.
-Deep Learning Models: Techniques like autoencoders and neural collaborative filtering can improve recommendation performance by capturing non-linear patterns.
-### 6. Advantages of Recommendation Systems:
-Personalization: Tailors recommendations based on user preferences, leading to a better user experience.
-Increased Engagement: Drives user interaction and retention by showing relevant items.
-Revenue Growth: Boosts sales or subscriptions by suggesting products or content that users are more likely to buy or consume.
-Scalability: Can handle large datasets and dynamic environments where user preferences change.
-### 7. Drawbacks of Recommendation Systems:
-Cold-Start Problem: Difficulty in making recommendations for new users or new items.
-Data Sparsity: Limited interactions or ratings can make it hard to generate reliable recommendations.
-Overfitting: Algorithms may recommend items that are too similar, limiting exploration of diverse content.
-### 8. Use Cases:
-E-Commerce: Personalized product recommendations (e.g., Amazon's product suggestions).
-Streaming Platforms: Movie or music recommendations (e.g., Netflix, Spotify).
-News Websites: Suggested articles based on reading history.
-Healthcare: Personalized treatment plans and medical recommendations.
-Social Networks: Friend suggestions or group recommendations (e.g., LinkedIn, Facebook).
-### 9.Conclusion:
-A Recommendation Engine is a fundamental tool in today’s data-driven world, enhancing user experiences by delivering personalized content.
-By leveraging techniques like content-based filtering, collaborative filtering, and hybrid models, these systems make accurate predictions that drive user
-engagement, business growth, and overall satisfaction. Understanding the strengths and weaknesses of each method is crucial for building an effective recommendation system.
+#### Data Processing: Reads anime data, fills missing values, and preprocesses genre data.
+#### TF-IDF Vectorization: Extracts important features from the 'genre' column.
+#### Cosine Similarity: Computes similarity scores between different anime genres.
+#### Flask App: Provides an interface where users input their preferred anime, and the engine outputs recommendations.
+
+## Features
+#### Anime Recommendations: Retrieves top anime recommendations based on user input.
+#### Database Integration: Saves results in a PostgreSQL database.
+#### Web-Based Interface: User-friendly interface to request and view recommendations.
+#### Installation
+#### Prerequisites
+#### Python 3.x
+#### PostgreSQL Database
+#### Required Python libraries (can be installed via requirements.txt)
+
+## Steps
+#### Clone the repository:
+#### git clone https://github.com/yourusername/Anime-Recommendation-System.git
+#### cd Anime-Recommendation-System
+#### Install dependencies:
+#### pip install -r requirements.txt
+
+## Database Setup:
+
+#### Create a PostgreSQL database named recommenddb.
+#### Update PostgreSQL credentials in app.py and main script.
+
+## Prepare Data and Models:
+
+#### Place your dataset in the project directory.
+#### Run the preprocessing and model training script to save the tfidf_matrix and cosine_matrix using joblib.
+#### Run the Flask App:
+
+#### python app.py
+#### Access the Application: Open your browser and navigate to http://127.0.0.1:5000.
+
+#### Usage
+#### Start the App: After setting up the environment, run app.py to start the Flask app.
+#### Input Anime and Get Recommendations:
+#### On the home page, enter the name of an anime and the number of top recommendations.
+#### Click 'Submit' to view recommendations, which will also be saved to the PostgreSQL database.
+#### View Saved Data: Check the saved recommendations in your PostgreSQL database under the table top_10.
+
+## Project Structure
+
+#### Anime-Recommendation-System/
+#### ├── templates/
+#### │   ├── index.html               # Homepage template
+#### │   ├── data.html                # Results template
+#### ├── anime.csv                    # Dataset file
+#### ├── app.py                       # Main Flask application
+#### ├── matrix                       # Saved TF-IDF matrix
+#### ├── cosine_matrix                # Saved cosine similarity matrix
+#### ├── requirements.txt             # Dependencies
+#### └── README.md                    # Project Documentation
+#### Key Files and Folders
+#### app.py: Main Flask app file, containing routes, database connections, and the recommendation function.
+#### anime.csv: Dataset with anime shows, genres, ratings, etc.
+#### matrix: Saved TF-IDF model for genre feature extraction.
+#### cosine_matrix: Saved cosine similarity matrix for anime recommendations.
+#### templates/: Contains HTML files for web app pages.
+
+## Technologies Used
+#### Programming Language: Python
+
+## Libraries:
+#### pandas, joblib, sklearn (TF-IDF, Cosine Similarity)
+#### sqlalchemy and psycopg2 (Database connections)
+#### Database: PostgreSQL
+#### Framework: Flask for web interface
+
+## Acknowledgements
+#### This project is based on public datasets and open-source libraries in Python. Special thanks to the contributors of sklearn, pandas, and the Flask and PostgreSQL communities.
